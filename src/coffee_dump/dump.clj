@@ -1,7 +1,8 @@
 (ns coffee-dump.dump
-  (:require [clojure.java.io :as io])
-  (:require [hugsql.core :as hugsql])
-  (:require [coffee-dump.utils :as utils]))
+  (:require [clojure.java.io :as io]
+            [hugsql.core :as hugsql]
+            [coffee-dump.utils :as utils])
+  (:use [coffee-dump.db :only [db]]))
 
 
 (hugsql/def-db-fns "coffee_dump/sql/dump.sql")
@@ -14,18 +15,26 @@
     )
 )
 
-(defn dump-type [type]
+(defn dump-type 
+  [ts package-name type]
   (do (print (:type-name type))
-      (insert-class-types (utils/current-ts) (:type-name type)))
+      (insert-class-types db
+       {
+        :ts ts 
+        :name (:type-name type)
+        :package package-name
+        :parent nil
+        }))
 )
 
 (defn dump-types
-  [mapped-types package-name]
-  (map dump-type mapped-types)
+  [ts package-name mapped-types]
+  (map (partial dump-type ts package-name) mapped-types)
 )
 
 (defn dump 
-  [mapped-type]
-  (dump-types (:types mapped-type) (:package-name mapped-type))
+  ([ts cu]
+   (dump-types ts (:package-name cu) (:types cu)))
+  ([cu]
+   (dump (utils/current-ts) cu))
 )
-
