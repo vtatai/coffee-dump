@@ -15,15 +15,26 @@
     )
 )
 
+(defn dump-field 
+  []
+  )
+
 (defn dump-type 
   [ts package-name type]
   (do (print (:type-name type))
-      (insert-class-types db
+      (insert-class-types 
+       db 
        {
         :ts ts 
         :name (:type-name type)
         :package package-name
         :parent nil
+        })
+      (insert-field 
+       db 
+       {
+        :name
+        :type 
         }))
 )
 

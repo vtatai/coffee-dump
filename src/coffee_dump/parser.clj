@@ -4,7 +4,7 @@
 
 (import com.github.javaparser.JavaParser)
 
-(defrecord CompilationUnit [package-name types])
+(defrecord JavaCompilationUnit [package-name types])
 (defrecord Type [type-name fields types])
 (defrecord Field [name type])
 
@@ -83,9 +83,13 @@
 (defn convert-compilation-unit 
   "Converts a compilation unit into a map"
   [jp-cu]
-  (map->CompilationUnit 
+  (map->JavaCompilationUnit 
    {
     :package-name (package-name jp-cu) 
     :types (convert-nested-types jp-cu)
     })
 )
+
+(defn parse-to-map [filename] 
+  (convert-compilation-unit (parse filename))
+  )

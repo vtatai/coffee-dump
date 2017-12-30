@@ -1,5 +1,7 @@
 package sample;
 
+import java.util.Iterator;
+
 public class DataStructure {
     
     // Create an array
@@ -23,7 +25,7 @@ public class DataStructure {
         System.out.println();
     }
     
-    interface DataStructureIterator extends java.util.Iterator<Integer> { } 
+    interface DataStructureIterator extends Iterator<Integer> { } 
 
     // Inner class implements the DataStructureIterator interface,
     // which extends the Iterator<Integer> interface
@@ -50,7 +52,6 @@ public class DataStructure {
     }
     
     public static void main(String s[]) {
-        
         // Fill the array with integer values and print out only
         // values of even indices
         DataStructure ds = new DataStructure();

@@ -2,8 +2,10 @@
    (:require [clojure.java.jdbc :as j]))
 
 (def db {:dbtype "mysql"
-         :dbname "coffee_dump_dev"
-         :user "root"})
+         :dbname "coffee_dump"
+         :user "root"
+         :host "localhost"
+         :port "4417"})
 
 (defn current-db-version []
   (let [res (j/query db

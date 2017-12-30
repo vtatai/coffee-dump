@@ -4,3 +4,10 @@
 -- :doc Insert into class types table
 INSERT INTO class_types (ts, name, package, parent) 
 VALUES (:ts,:name,:package,:parent);
+
+-- :name insert-fields
+-- :command :insert
+-- :result :raw
+-- :doc Insert into class types table
+INSERT INTO class_types (ts, name, package, parent) 
+VALUES (:ts,:name,:package,:parent);

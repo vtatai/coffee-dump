@@ -7,10 +7,9 @@
                  [org.clojure/java.jdbc "0.7.0-alpha3"]
                  [com.layerware/hugsql "0.4.7"]
                  [com.github.javaparser/javaparser-core "3.2.2"]
-                 [com.github.javaparser/java-symbol-solver-core "0.5.3"]
+                 [com.github.javaparser/java-symbol-solver-logic "0.6.3"]
                  [mysql/mysql-connector-java "6.0.6"]
                  ]
   :java-source-paths ["src-java"]
   :plugins [[drift "1.5.3"]] 
 )
-
